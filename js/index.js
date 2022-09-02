@@ -29,11 +29,11 @@ const  loadnewsDetails = (category_id) => {
 }
 
 const displayLoadDetais = items => {
-    console.log(items);
+    // console.log(items);
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent = '';
     items.forEach(item =>{
-        console.log(item)
+        // console.log(item._id)
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('row');
         cardDiv.classList.add('coustom-card');
@@ -63,8 +63,9 @@ const displayLoadDetais = items => {
                 <i class="fa-regular fa-star"></i>
                 <i class="fa-regular fa-star"></i>
                 </div>
-                <div>
-                  <h3 class="text-primary"><i class="fa-solid fa-arrow-right"></i></h3>
+                <div class="mt-3">
+                  <button onclick="loadCardItem('${item._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  -></button>
                 </div>
           </div>
         </div>
@@ -74,6 +75,22 @@ const displayLoadDetais = items => {
     })
 }
 
-loadNews();
+const loadCardItem = async(news_id) =>{
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
 
-// <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    const res = await fetch(url);
+    const data = await res.json();
+    displayCardItem(data.data[0]);
+}
+const displayCardItem = cards => {
+    console.log(cards)
+    const modalTitle = document.getElementById('exampleModalLabel');
+    modalTitle.innerText = cards.title;
+    const modalBody = document.getElementById('cards-body');
+    modalBody.innerHTML = `
+    <p> ${cards.details.slice(0, 200)} <p>
+    <h6>${cards.author.name ? cards.author.name : 'No Information'}</h6>
+    <p>${cards.author.published_date ? cards.author.published_date : 'No Information' }</p>
+      `
+}
+loadNews();
