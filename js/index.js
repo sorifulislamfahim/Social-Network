@@ -32,7 +32,6 @@ const displayLoadDetais = items => {
     // start spinner 
     toggoleSpinner(true);
 
-    // items = items.slice(0, 3);
     const noDataLoad = document.getElementById('no-data-load');
     if(items.length === 0){
         noDataLoad.classList.remove('d-none');
@@ -110,7 +109,6 @@ const loadCardItem = async(news_id) =>{
     }
 }
 const displayCardItem = cards => {
-    // console.log(cards)
     const modalTitle = document.getElementById('exampleModalLabel');
     modalTitle.innerText = cards.title;
     const modalBody = document.getElementById('cards-body');
