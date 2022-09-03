@@ -27,7 +27,7 @@
 <body>
     <!-- navver part  -->
     <header class="container">
-        <nav class="navbar bg-white">
+        <nav class="navbar bg-white mt-4">
             <div class="container-fluid">
               <a class="navbar-brand fw-bold fs-4"><span class="btn btn-primary fw-bold">Social</span><span class="ms-2">Connect</span></a>
               <form class="d-flex">
@@ -39,32 +39,31 @@
     </header>
 
     <hr class="container border border-secondary">
-
+<!-- -----------------------------------------------------------  -->
     <main class="container">
-        <!-- Catagory Section  -->
+        <!--1. Catagory Section  -->
         <section class="text-center">
             <div id="catagorys-container" class="text-nowrap text-secondary fw-semibold d-lg-flex">
-    
+
             </div>
         </section>
-        <!-- d-flex justify-content-around -->
 
-        <!-- card section  -->
+        <!--2. card section  -->
         <section>
             <div id="card-container" class="mt-5 w-md-25">
                 
               </div>
         </section>
 
-        <!-- No Data Founds Massage  -->
+        <!--3. No Data Founds Massage  -->
         <section>
             <div id="no-data-load" class="mt-5 text-center d-none">
                 <h3 class="text-danger">No Data Load. Please Go another Catagoris</h3>
             </div>
         </section>
 
-        <!-- spinner section  -->
-        <section class="d-none">
+        <!--4. spinner loding section  -->
+        <section id="loding-spinner" class="d-none">
             <div style="height: 400px;" class="d-flex text-danger justify-content-center align-items-center">
                 <div class="spinner-border" role="status">
                   <span class="visually-hidden">Loading...</span>

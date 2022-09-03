@@ -7,36 +7,32 @@ const loadNews = () =>{
     .catch(error => console.log(error));
 }
 const displayLoadNews = catagorys => {
-    // console.log(catagorys);
     const catagoryContainer = document.getElementById('catagorys-container');
 
     catagorys.forEach(catagory => {
-        // console.log(catagory)
         const creatDiv = document.createElement('div');
         creatDiv.classList.add('col')
         creatDiv.innerHTML = `
         <p onclick="loadnewsDetails('${catagory.category_id}')">${catagory.category_name} </p>
         `;
         catagoryContainer.appendChild(creatDiv);
-    })  
-    
+    })   
 }
-const  loadnewsDetails = (category_id) => {
+const loadnewsDetails = (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`
-    // console.log(category_id)
-    // console.log(url);
     fetch(url)
     .then(res => res.json())
     .then(data => displayLoadDetais(data.data))
-    .catch(error = console.log(error))
-    
+    .catch(error = console.log(error))  
 }
 
 const displayLoadDetais = items => {
-    // console.log(items);
     const cardContainer = document.getElementById('card-container');
 
-    items = items.slice(0, 3);
+    // start spinner 
+    toggoleSpinner(true);
+
+    // items = items.slice(0, 3);
     const noDataLoad = document.getElementById('no-data-load');
     if(items.length === 0){
         noDataLoad.classList.remove('d-none');
@@ -47,7 +43,6 @@ const displayLoadDetais = items => {
 
     cardContainer.textContent = '';
     items.forEach(item =>{
-        // console.log(item._id)
         const cardDiv = document.createElement('div');
         cardDiv.classList.add('row');
         cardDiv.classList.add('coustom-card');
@@ -87,8 +82,20 @@ const displayLoadDetais = items => {
         `;
     cardContainer.appendChild(cardDiv);
     });
-    // stop loder 
+    // stop spenner 
+    toggoleSpinner(false); 
 }
+
+const toggoleSpinner = isLoding => {
+    const loderSection = document.getElementById('loding-spinner');
+    if(isLoding === true){
+        loderSection.classList.remove('d-none')
+    }
+    else{
+        loderSection.classList.add('d-none')
+    }
+}
+
 
 const loadCardItem = async(news_id) =>{
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
@@ -103,7 +110,7 @@ const loadCardItem = async(news_id) =>{
     }
 }
 const displayCardItem = cards => {
-    console.log(cards)
+    // console.log(cards)
     const modalTitle = document.getElementById('exampleModalLabel');
     modalTitle.innerText = cards.title;
     const modalBody = document.getElementById('cards-body');
@@ -111,6 +118,8 @@ const displayCardItem = cards => {
     <p> ${cards.details.slice(0, 200)} <p>
     <h6>${cards.author.name ? cards.author.name : 'No Information'}</h6>
     <p>${cards.author.published_date ? cards.author.published_date : 'No Information' }</p>
-      `
+      `;
 }
+
+
 loadNews();
