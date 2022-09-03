@@ -31,6 +31,16 @@ const  loadnewsDetails = (category_id) => {
 const displayLoadDetais = items => {
     // console.log(items);
     const cardContainer = document.getElementById('card-container');
+
+    items = items.slice(0, 3);
+    const noDataLoad = document.getElementById('no-data-load');
+    if(items.length === 0){
+        noDataLoad.classList.remove('d-none');
+    }
+    else{
+        noDataLoad.classList.add('d-none')
+    }
+
     cardContainer.textContent = '';
     items.forEach(item =>{
         // console.log(item._id)
@@ -47,9 +57,9 @@ const displayLoadDetais = items => {
           <p class="card-text">${item.details.slice(0, 400)} ...</p>
           <div class="d-flex justify-content-between">
                 <div class="d-flex">
-                    <img src="${item.author.image_url}" class="">
-                    <div class="ms-3">
-                        <h6>${item.author.name ? item.author.name : 'No Information'}</h6>
+                    <img src="${item.author.image_url}">
+                    <div class="ms-3 text-center">
+                        <h6 class="fs-5">${item.author.name ? item.author.name : 'No Information'}</h6>
                         <p>${item.author.published_date ? item.author.published_date : 'No Information' }</p>
                     </div>
                 </div>
@@ -65,7 +75,7 @@ const displayLoadDetais = items => {
                 </div>
                 <div class="mt-3">
                   <button onclick="loadCardItem('${item._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  -></button>
+                  ->></button>
                 </div>
           </div>
         </div>
