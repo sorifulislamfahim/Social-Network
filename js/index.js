@@ -4,6 +4,7 @@ const loadNews = () =>{
     fetch(url)
     .then(res => res.json())
     .then(data => displayLoadNews(data.data.news_category))
+    .catch(error => console.log(error));
 }
 const displayLoadNews = catagorys => {
     // console.log(catagorys);
@@ -26,6 +27,8 @@ const  loadnewsDetails = (category_id) => {
     fetch(url)
     .then(res => res.json())
     .then(data => displayLoadDetais(data.data))
+    .catch(error = console.log(error))
+    
 }
 
 const displayLoadDetais = items => {
@@ -82,15 +85,21 @@ const displayLoadDetais = items => {
       </div>
         `;
     cardContainer.appendChild(cardDiv);
-    })
+    });
+    // stop loder 
 }
 
 const loadCardItem = async(news_id) =>{
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
 
-    const res = await fetch(url);
-    const data = await res.json();
-    displayCardItem(data.data[0]);
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayCardItem(data.data[0]);
+    }
+    catch{
+        error = console.log(error);
+    }
 }
 const displayCardItem = cards => {
     console.log(cards)
