@@ -74,7 +74,7 @@ const displayLoadDetais = items => {
                 </div>
                 <div class="mt-3 ms-5 text-nowrap me-5">
                   <button onclick="loadCardItem('${item._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  ->></button>
+                  <i class="fa-sharp fa-solid fa-arrow-right"></i></button>
                 </div>
           </div>
         </div>
